@@ -1,6 +1,7 @@
 // Ejemplo de servidor CON Express
 // 1. primero importo la librería
 const express = require('express');
+
 // 2. creo la aplicación, y la dejo en la variable 'app'
 const app = express()
 
@@ -49,6 +50,8 @@ app.get('/animal', (req, res) => {
 
   res.send(`El animal encontrado es un ${animal.nombre}`)
 });
+
+
 
 // 4. Ejecuto el servidor
 app.listen(3000, function () {
