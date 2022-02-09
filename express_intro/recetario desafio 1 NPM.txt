@@ -1,0 +1,5 @@
+Desafió NPM #1
+- Generar un proyecto express con una única ruta GET /
+- Pedir los datos con Axios de 10 usuarios a randomUser.io y guardarlos en una viariable
+- Iterar sobre los usuarios, agregandole a cada uno un UUID y una fecha de creación
+- Modificar los log de la consola con "chalk"

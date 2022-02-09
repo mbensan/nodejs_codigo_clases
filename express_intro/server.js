@@ -32,6 +32,7 @@ app.get('/tiempo', (req, res) => {
   res.send(`${new Date()}`)
 });
 
+
 app.get('/params', (req, res) => {
   console.log(req.query)
   res.send('Parametros leidos')
@@ -42,6 +43,12 @@ app.get('/animal', (req, res) => {
   if (!id_animal) {
     return res.send('Falta la ID del animal')
   }
+
+  // vamos a chequear que el "id" sea positivo
+  if (parseInt(id_animal) < 0) {
+    return res.end('El ID debe ser un número mayor a 0')
+  }
+
   const animal = animales.find(x => x.id == id_animal)
 
   if (!animal) {
