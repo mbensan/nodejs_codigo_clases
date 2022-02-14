@@ -1,0 +1,1 @@
+console.log('Procesando la imagen ' + process.argv[2])
