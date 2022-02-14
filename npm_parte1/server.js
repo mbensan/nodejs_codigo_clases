@@ -25,7 +25,7 @@ app.get('/rick',  async (req, res) => {
 })
 
 app.listen(3000, () => {
-  console.log(chalk.green.bgYellow('servidor funcionando en el puerto 3000'));
+  console.log(chalk.blue.bgWhite('servidor funcionando en el puerto 3000'));
   const id = uuid.v4();
   console.log('Ejemplo de identificado único', id);
   console.log('Los últimos 6 caracteres del UUID', id.substr(id.length - 6));
