@@ -60,8 +60,8 @@ yargs.command(
     }
 
     // si llegamos acá, entonces estamos listos para editar la imagen
-    child.exec(`node process_img.js ${archivo}`, (err, out) => {
-      console.log(out);
+    child.exec(`node process_img.js ${archivo}`, (err, data) => {
+      console.log(data);
     })
 
   }
