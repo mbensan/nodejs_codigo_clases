@@ -7,6 +7,29 @@
   <title>Informacion</title>
 </head>
 <body>
-  <h3>Archivo cargado estaticamente</h3>
+  <h2>Ejemplo de Star Wars</h2>
+  <h4>Personaje: <span id="personaje">Jar Jar Binks</span></h4>
+  <h4>Planeta: <span id="planeta">Naboo</span></h4>
+  <h4>Película: <span id="pelicula">La amenaza fantasma</span></h4>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script>
+    const miGet = function(URL) {
+      return new Promise((resolve, reject) => {
+        $.get(URL, function(datos) {
+          resolve(datos)
+        })
+      })
+    }
+
+    async function init () {
+      const personaje = await miGet('https://swapi.dev/api/people/1/')
+      const planeta = await miGet(personaje.homeworld)
+      const film = await miGet(planeta.films[0])
+
+      console.log(film);
+    }
+    init()
+  </script>
 </body>
 </html>

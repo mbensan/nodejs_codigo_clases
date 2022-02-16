@@ -59,6 +59,7 @@ app.get('/animal', (req, res) => {
   res.send(`El animal encontrado es un ${animal.nombre}`)
 });
 
+// ejemplo de consulta de API de sismos
 app.get('/sismo', async (req, res) => {
   const datos = await axios.get('https://api.gael.cloud/general/public/sismos')
   console.log(datos.data);
@@ -68,6 +69,41 @@ app.get('/sismo', async (req, res) => {
   const fecha = datos.data[0].Fecha.split(' ')[1]
 
   res.send(`Hubo un sismo de magnitud ${magnitud} en ${lugar} a las ${fecha} <br><br> A JUNTAR AGUA!!!`)
+})
+
+function mes_palabra(mes) {
+  return [
+    'Enero', 'Febrero', 'Marzo', 'Abril',
+    'Mayo', 'Junio', 'Julio', 'Agosto', 'Setiembre',
+    'Octubre', 'Noviembre', 'Diciembre'
+  ][parseInt(mes) - 1]
+}
+
+// ejemplo de consulta de API de usuario al azar
+app.get('/usuario', async (req, res) => {
+  const datos = await axios.get('https://randomuser.me/api/')
+  const persona = datos.data.results[0]
+
+  const nombre_completo = `${persona.name.first} ${persona.name.last}`
+  let fecha_nac = persona.dob.date.split('T')[0].split('-')
+  fecha_nac = `${fecha_nac[2]} de ${mes_palabra(fecha_nac[1])} de ${fecha_nac[0]}`
+  
+  res.send(`La persona se llama ${nombre_completo} y nació en ${fecha_nac}`);
+})
+
+app.get('/usuarios', async (req, res) => {
+  const datas = await Promise.all([
+    axios.get('https://randomuser.me/api/'),
+    axios.get('https://randomuser.me/api/'),
+    axios.get('https://randomuser.me/api/')
+  ])
+  const persona1 = datas[0].data.results[0];
+  const persona2 = datas[1].data.results[0];
+  const persona3 = datas[2].data.results[0];
+  
+  console.log(persona1)
+  
+  res.send(`Las personas son ${persona1.name.first} ${persona1.name.last}, ${persona2.name.first} ${persona2.name.last} y ${persona3.name.first} ${persona3.name.last},`);
 })
 
 
