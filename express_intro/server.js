@@ -1,6 +1,7 @@
 // Ejemplo de servidor CON Express
 // 1. primero importo la librería
 const express = require('express');
+const axios = require('axios');
 
 // 2. creo la aplicación, y la dejo en la variable 'app'
 const app = express()
@@ -57,6 +58,17 @@ app.get('/animal', (req, res) => {
 
   res.send(`El animal encontrado es un ${animal.nombre}`)
 });
+
+app.get('/sismo', async (req, res) => {
+  const datos = await axios.get('https://api.gael.cloud/general/public/sismos')
+  console.log(datos.data);
+
+  const lugar = datos.data[0].RefGeografica
+  const magnitud = datos.data[0].Magnitud
+  const fecha = datos.data[0].Fecha.split(' ')[1]
+
+  res.send(`Hubo un sismo de magnitud ${magnitud} en ${lugar} a las ${fecha} <br><br> A JUNTAR AGUA!!!`)
+})
 
 
 
