@@ -106,6 +106,34 @@ app.get('/usuarios', async (req, res) => {
   res.send(`Las personas son ${persona1.name.first} ${persona1.name.last}, ${persona2.name.first} ${persona2.name.last} y ${persona3.name.first} ${persona3.name.last},`);
 })
 
+app.get('/pokemones', async(req, res) => {
+  const pokeData = await axios.get("https://pokeapi.co/api/v2/pokemon/");
+  const pokemones = pokeData.data.results;
+
+
+  Promise.all([
+    axios.get(pokemones[0].url),
+    axios.get(pokemones[1].url),
+    axios.get(pokemones[2].url),
+  ]).then(function(infoPokemones) {
+    // si la llamada es exitosa
+    console.log(infoPokemones);
+  }).catch((error) => {
+    // si la llamada es infructuosa
+    console.log('Error', error);
+  })
+
+  res.send([
+    {
+      nombre: 'Pikachu',
+      peso: 422,
+      estatura: 170,
+      img: 'http://pokeapi.co/pikachu/foto.jpg'
+    }
+  ]);
+});
+
+
 
 
 // 4. Ejecuto el servidor
