@@ -1,0 +1,8 @@
+Ejercicio:
+Implementar las siguientes rutas:
+
+/addUsuario -> Añade a la lista de usuarios (name, lastname, email, password)
+/addUsuarioAzar -> Añade usuario al azar tomado desde: (https://randomuser.me/api/)
+/listUsuarios -> Lista todos los usuarios en el archivo db.json
+
+BONUS: Formulario para crear usuarios
